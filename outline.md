@@ -24,6 +24,9 @@ PROJECT OUTLINE
   - civilian collateral damage (death?)
 * interaction civilians – other group
   - possibility of recruitment
+* Actions every timestep:
+  - Agents may move to an empty cell in their vision.
+  - Agents may interact with other agents in their vision.
 
 
 
