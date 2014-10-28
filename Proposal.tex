@@ -1,0 +1,74 @@
+\documentclass[8 pt]{scrartcl}
+\usepackage[ngerman, UKenglish]{babel} 		%Neue deutsche Silbentrennung
+\usepackage[utf8]{inputenc}		%alternative für alle Betriebssysteme, Zeichensatz von Windows für Umlaute und Sonderzeichen, falls Editor UTF-8
+							%(Unicode) unterstützt
+\usepackage[T1]{fontenc}			%Korrektes Trennen von Wörtern mit Umlauten
+\usepackage{graphicx}			%Einbingen von Bildern
+
+\usepackage[
+		left=2.5cm,
+		right=2.5cm,
+		top=1.5cm,
+		bottom=1.5cm,
+		includehead, includefoot %Kopf- und Fußzeile verwenden
+		]{geometry}			%für bessere Blatteinteilung
+\usepackage{fancyhdr}			%bessere Kopf- und Fußzeile
+\usepackage{multirow}			%für Überschrift über mehrere Spalten
+\usepackage{tabularx, booktabs}			%bessere Tabellen
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{paralist}
+\usepackage{subfigure}
+\usepackage{bbold}
+\usepackage{units}
+\usepackage{rsphrase}
+%\usepackage{nameref}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\renewcommand{\baselinestretch}{1.25}
+
+\pagestyle{fancy}	 %eigener Seitenstil
+	\fancyhf{}			 %alle Kopf- und Fußzeilenfelder bereinigen
+	\fancyhead[L]{Proposal}
+	\fancyhead[R]{Stefano Weidmann \\ Otto Schullian}
+	\renewcommand{\headrulewidth}{0pt} 		%Linie, wenn erwünscht 0.4 pt
+	\fancyfoot[R]{\thepage}
+	\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{title}{	 	%eigener Seitenstil
+	\fancyhf{}			 %alle Kopf- und Fußzeilenfelder bereinigen
+	\fancyhead[L]{}
+	\fancyhead[R]{}
+	\renewcommand{\headrulewidth}{0pt} 		%Linie, wenn erwünscht 0.4 pt
+	\renewcommand{\footrulewidth}{0pt}}
+
+
+\begin{document}
+\setlength{\parindent}{0mm}
+\vspace*{0.5cm}
+\begin{center}
+\huge
+Agent-based computational approach modelling dynamics between civilians and organized groups
+\end{center}
+\vspace{0.5cm}
+We propose an agent-based model where a Central Authority (State) tries to suppress violence from organized criminal groups between each other and towards civilians.
+\section{Introduction}
+As an example we use the drug wars between two or more drug gangs in Mexico. Continuing interference of the state in the, often violent, dynamics between the drug gangs often also results in negative perception of the government in the civilian population and therefore leading to an aggravated position of the government that is trying to suppress the violence and the occurrence of criminal organisations. In a simple model, by combining several features from the models described in \cite{epstein, bennet}, we want to try to simulate the early stages of these complex group dynamics. We are particularly interested in the description and influence of the civilian-state relationship - and what fundamental role this relationship plays in the defeat of criminal organisations.
+\section{Goal}The goal is to write a fully functioning simulation and to generate sufficient data for a statistical evaluation, for various different scenarios especially for varying parameters in the state-civilian relationship for various numbers of organisations One does not know to what extend this relationship plays a role in this group dynamics.\section{Method}The method described in the following is a combination of the model presented in \cite{epstein, bennet}. The agent-based approach assigns a certain number of agents for each group to different positions on a grid. The various groups have the following goals (except for the civilians): The criminal organisations aim to eliminate each other and try to operate without government interference. The government on the other hand tries to suppress gang activity. Each agent (depending on the associated group) has various qualities, i.e. numeric parameters, which are initially assigned randomly by means of a pseudo-random number generator according to an initially defined (gaussian) distribution. They are crucial to the the agent-agent relationships, which have not yet been formally defined. In general we plan to have to following relationships:
+\begin{enumerate}
+\item government - criminal organisations: can be violent which results in death, or non-fatal which results in gang members being arrested. There will be civilian collateral damage, resulting in maybe death and increased fear. 
+\item criminal organisations - criminal organisations: always violent resulting in death and civilian collateral damage.
+\item civilian - any other group: possibility of recruitment and help or blackmail.
+\end{enumerate}The time propagation consists of two main steps: 
+\begin{enumerate}
+\item A random agent moves to an empty cell in their vision.
+\item A random agent interacts with another agent in the vision. 
+\end{enumerate}\section{Milestones}\begin{itemize}\item First week(s) – clear definition of the interactions and implementation.\item Next weeks – running of simulations and generation of data.\item Last week – evaluation and interpretation of the collected data.
+\end{itemize}
+
+
+\section{Appendix}
+\begin{thebibliography}{sotief}
+\bibitem{epstein} J. M. Epstein, \textit{PNAS}, \textbf{2002}, \textit{99 (3)}, 7243.
+\bibitem{bennet} S. Bennet, \textit{JASSS}, \textbf{2008}, \textit{11(4)}, 7.  
+\end{thebibliography}
+\end{document}
