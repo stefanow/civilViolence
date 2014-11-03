@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}                
+\geometry{letterpaper}                   
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{natbib}
+\usepackage{amssymb, amsmath}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+%\title{Title}
+%\author{Name 1, Name 2}
+%\date{date} 
+
+\begin{document}
+
+
+\input{cover}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section*{Agreement for free-download}
+\bigskip
+
+
+\bigskip
+
+
+\large We hereby agree to make our source code for this project freely available for download from the web pages of the SOMS chair. Furthermore, we assure that all source code is written by ourselves and is not violating any copyright restrictions.
+
+\begin{center}
+
+\bigskip
+
+
+\bigskip
+
+
+\begin{tabular}{@{}p{3.3cm}@{}p{6cm}@{}@{}p{6cm}@{}}
+\begin{minipage}{3cm}
+
+\end{minipage}
+&
+\begin{minipage}{6cm}
+\vspace{2mm} \large Name 1
+
+ \vspace{\baselineskip}
+
+\end{minipage}
+&
+\begin{minipage}{6cm}
+
+\large Name 2
+
+\end{minipage}
+\end{tabular}
+
+
+\end{center}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% IMPORTANT
+% you MUST include the ETH declaration of originality here; it is available for download on the course website or at http://www.ethz.ch/faculty/exams/plagiarism/index_EN; it can be printed as pdf and should be filled out in handwriting
+
+
+%%%%%%%%%% Table of content %%%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Abstract}
+
+\section{Individual contributions}
+
+\section{Introduction and Motivations}
+
+\section{Description of the Model}
+Moore 
+random movement
+random agent action
+\subsection{Agent-Agent Interactions}
+\subsubsection{G-G interactions}
+The net risk is calculated according to
+\begin{equation}
+N=R\cdot P,
+\end{equation}
+where $N$ denotes the net risk, $R$ denotes the risk aversion of the agents, which is set globally to a fixed value for the gang agents (since we are assuming a centralised organisation of the gangs) and P is a risk assessment consisting of two terms, one describing the probability of an unsuccessful attack and one describing the probability of arrest from police agents in the vicinity. The term is calculated with
+\begin{equation}
+P_i=((1-e^{-k_2\cdot E_i/F})+(1-e^{-k_1\cdot G/F}))/2,
+\end{equation}
+where the index $i$ denotes the $i$th gang whose risk is assessed. $E_i$ denotes the number of enemy agents within the vision of the selected agent, and $F$ denotes the number of friendly agents (i.e. the number of agents from the same gang) in the vision of the selected agent. $k_2$. Similarly the second term calculates the risk caused by the presence of the police, where $G$ is the number of the policemen in the vicinity of the selected agent. $k_1$ and $k_2$ are constant, which are globally set to consistent values, e.g. $k_2$  so that for equal number of $E_i$ and $F$ the probability is $P=0.5$  and $k_2$ so that $P=0.9$.\cite{epstein} The lowest net risk is then compared to a threshold and as long as it is lower an attack occurs. The outcome of the attack is then calculated by means of a random number and the accuracy of the agents. The probability for a successful attack is given by
+\begin{equation}
+\frac{\sum_iA_i}{\sum_iA_i+\sum_jA_j}.
+\end{equation}
+The index $i$ goes over the friendly agents in the vision of the selected agents (including himself) and $j$ goes over the enemy agents (of the same group) in the vision of the attacked agents (again including himself).\\
+Can gang attack state?
+
+\section{Implementation}
+
+\section{Simulation Results and Discussion}
+
+\section{Summary and Outlook}
+
+\section{References}
+
+
+
+
+
+
+\end{document}  
+
+
+
+ 
