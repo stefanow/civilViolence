@@ -4,6 +4,11 @@ global v
 global gridpos
 global x
 global y
+
+if (type~=agents(pos,1))
+    error('type wrong in getvision')
+end
+
 boundx=zeros(2,1);
 boundy=zeros(2,1);
 
