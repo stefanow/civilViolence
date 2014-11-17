@@ -42,8 +42,7 @@ if (sum(action)~=0)
             agents(pos,5)=acc;
             agents(pos,6:end)=0;
             civtogangs(i)=civtogangs(i)+1;
-            
-            reorder2(pos)
+            re
             break
             
         end

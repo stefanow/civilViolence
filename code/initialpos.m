@@ -13,6 +13,11 @@ global y
 global noag
 global agents
 global nog
+global meaneff
+global meanacc
+global sdacc
+global sdeff
+global initialanger
 
 
 %set posvector and hvector to empty vectors
@@ -74,20 +79,20 @@ end
 %assigns the initial parameters to police and gangs
 for i=1:sum(noag(1:(end-1)))
     if (agents(i,1)==1)
-        rn=randomvalue(1,0.25);
+        rn=randomvalue(meaneff(1),sdeff(1));
         eff=max(0,rn);
         eff=min(eff,1);
-        rn=randomvalue(0,0.25);
+        rn=randomvalue(meaneff(2),sdeff(2));
         acc=max(0,rn);
         acc=min(acc,1);
         agents(i,4)=eff;
         agents(i,5)=acc;
     elseif (agents(i,1)~=2)
         if (agents(i,1)~=0)
-            rn=randomvalue(0.5,0.25);
+            rn=randomvalue(meaneff(2),sdeff(2));
             eff=max(0,rn);
             eff=min(eff,1);
-            rn=randomvalue(0.5,0.25);
+            rn=randomvalue(meanacc(2),sdacc(2));
             acc=max(0,rn);
             acc=min(acc,1);
             agents(i,4)=eff;
@@ -97,6 +102,6 @@ for i=1:sum(noag(1:(end-1)))
 end
 
 %assigns the initial civilian values 
-agents(:,6:end)=0;
+agents((noag(1)+1):sum(noag(1:2)),6:end)=initialanger;
 
 

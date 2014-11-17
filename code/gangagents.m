@@ -14,6 +14,7 @@ global T
 global attackprob
 global change
 global kills
+global initialanger
 
 %generate random number for decision for attack
 pr=rand(1);
@@ -58,6 +59,7 @@ if (pr<attackprob(2))
             for i=3:length(N)
                 if (N(i)==minimum)
                     action(i)=1;
+                    break
                 end
             end
             
@@ -71,15 +73,20 @@ if (pr<attackprob(2))
                 j=j+action(i);
                 if (j==ix)
                     type2=i;
+                    break
                 end
             end
         end
         
         %if minimum is smaller than threshold execute interaction
         if (minimum<T)
+            
+            
             %choose random of agent of selected type
             [a,b]=getvision(pos,type,type2);
             ix=ceil(rand(1)*a);
+            
+            
             %extract absolute position of chosen agent
             abspos=gridpos(b(ix,1),b(ix,2));
             
@@ -111,35 +118,38 @@ if (pr<attackprob(2))
             
             %generate number of type1 agents in vision of agent1
             %and for type2
-            [a,b]=getvision(pos,type,type);
-            [c,d]=getvision(abspos,type2,type2);
-            
-            %initialize total efficiency
-            proba=0;
-            probb=0;
-            for i=1:a
-                proba=proba+agents(gridpos(b(i,1),b(i,2)),4);
-            end
-            for i=1:c
-                probb=probb+agents(gridpos(d(i,1),d(i,2)),4);
-            end
-            
+%             [a,b]=getvision(pos,type,type);
+%             [c,d]=getvision(abspos,type2,type2);
+%             
+%             %initialize total efficiency
+%             proba=0;
+%             probb=0;
+%             for i=1:a
+%                 proba=proba+agents(gridpos(b(i,1),b(i,2)),4);
+%             end
+%             for i=1:c
+%                 probb=probb+agents(gridpos(d(i,1),d(i,2)),4);
+%             end
+            proba=agents(pos,4);
+            probb=agents(type2,4);
             %execute attack
             ra=rand(1);
             if (ra<proba/(proba+probb))
                 %create new civilian
                 agents(abspos,1)=2;
                 agents(abspos,4:5)=0;
-                agents(abspos,6:end)=rand(size(agents(abspos,6:end)));
+                agents(abspos,6:end)=initialanger;
                 %update kills
                 kills(type,type2)=kills(type,type2)+1;
+                reorder2(abspos)
             else
                 %create new civilian
                 agents(pos,1)=2;
                 agents(pos,4:5)=0;
-                agents(pos,6:end)=rand(size(agents(abspos,6:end)));
+                agents(pos,6:end)=initialanger;
                 %update kills
                 kills(type2,type)=kills(type2,type)+1;
+                reorder2(pos)
             end
         end
     end

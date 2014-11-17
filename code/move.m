@@ -1,12 +1,13 @@
 %% This function simulates the movement of the agents
 % if there is a free position on the grid the function looks for a free
-% position 
+% position
 
 function move
 % load variables
 global agents
 global noag
 global gridpos
+global nog
 
 %set par par variable to zero, while it is zero the loop works
 par=0;
@@ -19,7 +20,25 @@ if (noag(end)~=0)
     %loop until a movement was executed
     while(par==0)
         %choose random agent
-        pos=ceil(rand(1)*sum(noag(1:(end-1))));
+        par2=0;
+        while (par2==0)
+            poszero=sum(noag(1:(end-1)))+ceil(rand(1)*noag(end));
+            %choose agents around it
+            tot=0;
+            vec=[];
+            
+            for i=1:(nog+2)
+                [a,b]=getvision(poszero,0,i);
+                tot=tot+a;
+                vec=[vec;b];
+            end
+            if (tot~=0)
+                ix=ceil(rand(1)*tot);
+                pos=gridpos(vec(ix,1),vec(ix,2));
+                par2=1;
+            end
+        end
+        
         %check if agent is not a free position (should never be the case)
         if(agents(pos,1)==0)
             error('free position was chosen')
