@@ -6,14 +6,14 @@ fileID5 = fopen('par.txt','w')
 for tre=0.0:0.3:0.6
     for attprob1=0.1:0.4:0.9
         for attprob2=0.1:0.4:0.9
-            for chang1=0.1:0.3:0.6
-                for chang2=0.1:0.3:0.6
-                    for meanacc1=0.1:0.4:0.9
-                        for meanacc2=0.1:0.4:0.9
-                            for meaneff1=0.1:0.4:0.9
-                                for meaneff2=0.1:0.4:0.9
-                                    for initang1=0.1:0.4:0.9
-                                        for initang2=0.1:0.4:0.9
+            for chang1=0.1:0.5:0.6
+                for chang2=0.1:0.5:0.6
+                    for meanacc1=0.1:0.8:0.9
+                        for meanacc2=0.1:0.8:0.9
+                            for meaneff1=0.1:0.8:0.9
+                                for meaneff2=0.1:0.8:0.9
+                                    for initang1=0.1:0.4:0.5
+                                        for initang2=0.1:0.4:0.5
                                             
                                             
                                             simno=simno+1;
