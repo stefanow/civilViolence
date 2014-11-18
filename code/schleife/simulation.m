@@ -2,7 +2,7 @@
 
 clear all
 simno=0;
-
+fileID5 = fopen('par.txt','w')
 for tre=0.0:0.3:0.6
     for attprob1=0.1:0.4:0.9
         for attprob2=0.1:0.4:0.9
@@ -17,10 +17,13 @@ for tre=0.0:0.3:0.6
                                             
                                             
                                             simno=simno+1;
-                                            fileID1 = fopen(sprintf('anger_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w')
-                                            fileID2 = fopen(sprintf('civtoagents_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w')
-                                            fileID3 = fopen(sprintf('kills_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w')
-                                            fileID4 = fopen(sprintf('noagents_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w')
+                                            fileID1 = fopen(sprintf('anger_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w');
+                                            fileID2 = fopen(sprintf('civtoagents_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w');
+                                            fileID3 = fopen(sprintf('kills_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w');
+                                            fileID4 = fopen(sprintf('noagents_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w');
+                                            
+                                            fprintf(fileID5,'%s',sprintf('noagents_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2));
+                                            fprintf(fileID5,'\n');
                                             
                                             %% define parameters
                                             
@@ -224,15 +227,15 @@ for tre=0.0:0.3:0.6
                                                 %         noag
                                                 %         sum(kills)
                                                 %     end
-                                                fprintf(fileID1,'%s',sum(agents(:,6:end))/noag(2));
+                                                fprintf(fileID1,'% f',sum(agents(:,6:end))/noag(2));
                                                 fprintf(fileID1,'\n');
                                                 for i=1:nog+2
-                                                    fprintf(fileID3,'%s',kills(i,:));
+                                                    fprintf(fileID3,'% f',kills(i,:));
                                                 end
                                                 fprintf(fileID3,'\n');
-                                                fprintf(fileID4,'%s',noag);
+                                                fprintf(fileID4,'% f',noag);
                                                 fprintf(fileID4,'\n');
-                                                fprintf(fileID2,'%s',civtogangs');
+                                                fprintf(fileID2,'% f',civtogangs');
                                                 fprintf(fileID2,'\n');
                                                 
 
@@ -285,7 +288,11 @@ for tre=0.0:0.3:0.6
                                             % plot(1:size(civtogangstime,1),civtogangstime)
                                             % legend('gang1','gang2')
                                             
-                                            fclose('all')
+                                            fclose(fileID1)
+                                            fclose(fileID2)
+                                            fclose(fileID3)
+                                            fclose(fileID4)
+                                            
                                         end
                                     end
                                 end
@@ -297,5 +304,5 @@ for tre=0.0:0.3:0.6
         end
     end
 end
-
+fclose('all')
 
