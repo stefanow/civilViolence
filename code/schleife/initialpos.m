@@ -102,6 +102,7 @@ for i=1:sum(noag(1:(end-1)))
 end
 
 %assigns the initial civilian values 
-agents((noag(1)+1):sum(noag(1:2)),6:end)=initialanger;
+agents((noag(1)+1):sum(noag(1:2),7:end))=initialanger(2);
+agents((noag(1)+1):sum(noag(1:2),6))=initialanger(1);
 
 

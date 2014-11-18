@@ -130,7 +130,8 @@ if (pr<attackprob(1))
                 %create new civilian
                 agents(abspos,1)=2;
                 agents(abspos,4:5)=0;
-                agents(abspos,6:end)=initialanger;
+                agents(pos,7:end)=initialanger(2);
+                agents(pos,6)=initialanger(1);
                 %update kills
                 kills(1,posmin)=kills(1,posmin)+1;
                 reorder2(abspos)
