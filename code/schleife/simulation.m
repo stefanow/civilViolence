@@ -1,14 +1,29 @@
 %% clear all variables
 
 clear all
-close all
+simno=0;
+
+for tre=0.0:0.3:0.6
+    for attprob1=0.1:0.4:0.9
+        for attprob2=0.1:0.4:0.9
+            for chang1=0.1:0.3:0.6
+                for chang2=0.1:0.3:0.6
+                    for meanacc1=0.1:0.4:0.9
+                        for meanacc2=0.1:0.4:0.9
+                            for meaneff1=0.1:0.4:0.9
+                                for meaneff2=0.1:0.4:0.9
+                        
+                    
+simno=simno+1;
+fileID = fopen(sprintf('simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2),'w')
+
 %% define parameters
 
 %define grid size
 global x
 global y
-x=50;
-y=50;
+x=40;
+y=40;
 
 %define no of gangs
 global nog
@@ -18,9 +33,9 @@ nog=2;
 %police
 c(1)=0.1;
 %civilians
-c(2)=0.2;
+c(2)=0.5;
 %gangs
-c(3)=(1-0.6)/2;
+c(3)=(0.9-c(1)-c(2))/2;
 
 if (c(1)+c(2)+nog*c(3)>1)
     error('density too high')
@@ -55,13 +70,13 @@ par=0;
 %%
 global threshold;
 threshold=ones(nog,1);
-threshold=threshold*0.3;
+threshold=threshold*tre;
 global attackprob;
-attackprob(1)=0.7;
-attackprob(2)=0.5;
+attackprob(1)=attprob1;
+attackprob(2)=attprob2;
 global change
-change(1)=0.5;
-change(2)=0.5;
+change(1)=chang1;
+change(2)=chang2;
 global civtogangs;
 civtogangs=zeros(nog,1);
 typetot=zeros(nog+2,1);
@@ -69,22 +84,22 @@ sumanger=[];
 global kills
 kills=zeros(nog+2);
 
-col=colormap;
-col(1,:)=1;
+% col=colormap;
+% col(1,:)=1;
 global meaneff
 global meanacc
 global sdacc
 global sdeff
 global initialanger
-meanacc(1)=0.9;
-meanacc(2)=0.5;
-meaneff(1)=0.9;
-meaneff(2)=0.5;
+meanacc(1)=meanacc1;
+meanacc(2)=meanacc2;
+meaneff(1)=meaneff1;
+meaneff(2)=meaneff2;
 sdacc(1)=0.25;
 sdacc(2)=0.25;
 sdeff(1)=0.25;
 sdeff(2)=0.25;
-initialanger=.5;
+initialanger(1)=0.5;
 
 output=1000;
 %% define agents
@@ -104,17 +119,17 @@ civtogangstime=[];
 noagtime=[];
 killstime=[];
 
-%% open for film
-figure, set(gcf, 'Color','white')
-set(gca, 'nextplot','replacechildren', 'Visible','off');
-nFrames = Tstep+1;
-vidObj = VideoWriter('agents.avi');
-vidObj.Quality = 100;
-vidObj.FrameRate = 20;
-open(vidObj);
-figure('Renderer','zbuffer');
-hold off;
-colormap(col);
+% %% open for film
+% figure, set(gcf, 'Color','white')
+% set(gca, 'nextplot','replacechildren', 'Visible','off');
+% nFrames = Tstep+1;
+% vidObj = VideoWriter('agents.avi');
+% vidObj.Quality = 100;
+% vidObj.FrameRate = 20;
+% open(vidObj);
+% figure('Renderer','zbuffer');
+% hold off;
+% colormap(col);
 %% calculate cdf
 global cdf
 global xval
@@ -130,29 +145,29 @@ global gridpos
 
 gridcalc
 
-f=figure(1);
-imagesc(grid);
-axis image
-caxis([0,nog+2])
-colormap(col);
-writeVideo(vidObj, getframe(gca));
+% f=figure(1);
+% imagesc(grid);
+% axis image
+% caxis([0,nog+2])
+% colormap(col);
+% writeVideo(vidObj, getframe(gca));
 
 %% time propagation
 
-if (par==1)
-    figure, set(gcf, 'Color','white')
-set(gca, 'nextplot','replacechildren', 'Visible','off');
-nFrames = Tstep+1;
-vidObj = VideoWriter('agents.avi');
-vidObj.Quality = 100;
-vidObj.FrameRate = 20;
-open(vidObj);
-figure('Renderer','zbuffer');
-hold off;
-colormap(col);
-end
+% if (par==1)
+%     figure, set(gcf, 'Color','white')
+%     set(gca, 'nextplot','replacechildren', 'Visible','off');
+%     nFrames = Tstep+1;
+%     vidObj = VideoWriter('agents.avi');
+%     vidObj.Quality = 100;
+%     vidObj.FrameRate = 20;
+%     open(vidObj);
+%     figure('Renderer','zbuffer');
+%     hold off;
+%     colormap(col);
+% end
 for timestep=1:Tstep
-    
+
     % movement
     move
     
@@ -191,18 +206,18 @@ for timestep=1:Tstep
     %create grid
     
     sumkills=sum(kills);
-    if(mod(timestep,output)==0)
-        gridcalc
-        f=figure(1);
-        imagesc(grid);
-        axis image
-        caxis([0,nog+2])
-        colormap(col)
-        writeVideo(vidObj, getframe(gca));
-        civtogangs
-        noag
-        sum(kills)
-    end
+%     if(mod(timestep,output)==0)
+%         gridcalc
+%         f=figure(1);
+%         imagesc(grid);
+%         axis image
+%         caxis([0,nog+2])
+%         colormap(col)
+%         writeVideo(vidObj, getframe(gca));
+%         civtogangs
+%         noag
+%         sum(kills)
+%     end
     sumanger=[sumanger;sum(agents(:,6:end))/noag(2)];
     killstime=[killstime;sum(kills)];
     noagtime=[noagtime;noag];
@@ -233,27 +248,27 @@ for timestep=1:Tstep
 end
 par=1;
 %% close video
-close(gcf)
-
-close(vidObj);
-
-f=figure;
-
-plot(1:size(sumanger,1),sumanger)
-legend('police','gang1','gang2')
-%%
-f=figure;
-title('kills')
-plot(1:size(killstime,1),killstime(:,3:end))
-legend('gang1','gang2')
-%%
-f=figure;
-title('agents')
-plot(1:size(noagtime,1),noagtime(:,1:(end-1)))
-legend('police','civilians','gang1','gang2')
-%%
-f=figure;
-title('civilians to gang')
-plot(1:size(civtogangstime,1),civtogangstime)
-legend('gang1','gang2')
+% close(gcf)
+% 
+% close(vidObj);
+% 
+% f=figure;
+% 
+% plot(1:size(sumanger,1),sumanger)
+% legend('police','gang1','gang2')
+% %%
+% f=figure;
+% title('kills')
+% plot(1:size(killstime,1),killstime(:,3:end))
+% legend('gang1','gang2')
+% %%
+% f=figure;
+% title('agents')
+% plot(1:size(noagtime,1),noagtime(:,1:(end-1)))
+% legend('police','civilians','gang1','gang2')
+% %%
+% f=figure;
+% title('civilians to gang')
+% plot(1:size(civtogangstime,1),civtogangstime)
+% legend('gang1','gang2')
 
