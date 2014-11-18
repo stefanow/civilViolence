@@ -22,7 +22,7 @@ for tre=0.0:0.3:0.6
                                             fileID3 = fopen(sprintf('kills_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w');
                                             fileID4 = fopen(sprintf('noagents_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2),'w');
                                             
-                                            fprintf(fileID5,'%s',sprintf('noagents_simno_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d.txt',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2));
+                                            fprintf(fileID5,'% f',simno,tre,attprob1,attprob2,chang1,chang2, meanacc1,meanacc2,meaneff1,meaneff2,initang1,initang2);
                                             fprintf(fileID5,'\n');
                                             
                                             %% define parameters
