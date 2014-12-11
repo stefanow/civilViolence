@@ -1,0 +1,42 @@
+SENSITIVITY ANALYSIS
+
+To determine the influence of the varied parameters, a
+variance-based sensitivity analysis has been done.
+
+Two output variables have been considered.
+The first one is the number of civilian agents
+at the end of each simulation, excluding those simulations which terminated prematurely,
+i.e. where at one point there were no civilians left.
+We assume that this variable is at an equilibrium by the end of every simulation.
+
+The other output variable is the rate of change over time of the civilian population, i.e.
+the rate of change of the number of civilian agents over the course of a simulation.
+
+The following two figures show the main effect indices
+for the two output variables, i.e. the contribution of the variance of a
+single input parameter to the variance of the output variable.
+They have been been calculated varying the respective input parameter while keeping
+the other input parameters constant.
+We deem the input parameters with higher main effect index more influential
+than the other.
+
+INTERPRETATION
+
+As one can see in the first figure [F], the most influential input parameter by far for the number of
+civilian agents at the end is the threshold, which an anger difference must exceed for a civilian to be
+converted. It has a far greater impact on the number of civilians then the followers, which are the attack
+probability of the gangs and the mean accuracy of the police.
+
+Likewise, in the second figure [F], the mean accuracy of the police, followed by the conversion threshold
+and the attack probability of the police, dominate over the rest.
+
+That the conversion threshold is so prevalent is surprising.
+One would expect that the attack probability of the police and their efficiency play
+major roles, but it seems that it is more important to prevent the gangs from recruiting new members.
+
+As a possible explanation for why the conversion threshold is more important than the mean accuracy of
+the police one may note that the increase in anger of a civilian involved in a fight ('collateral damage') is
+exponentially decreasing. And as the anger increases for both fighting parties, the anger values for both
+the police and the gangs will settle down on a similar, high level after a certain time (that is, if the civilian
+in question has received little help from either party). When the anger values are similar, a smaller threshold
+is needed for the civilian to be converted.

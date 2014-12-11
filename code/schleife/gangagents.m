@@ -32,7 +32,7 @@ if (pr<attackprob(2))
     N=N/2;
     
     %add risk aversion
-    N=N*R;
+    N=N*R(2);
     
     %exclude risk for police and civilians
     N(1)=1000;
@@ -79,7 +79,7 @@ if (pr<attackprob(2))
         end
         
         %if minimum is smaller than threshold execute interaction
-        if (minimum<T)
+        if (minimum<T(2))
             
             
             %choose random of agent of selected type
